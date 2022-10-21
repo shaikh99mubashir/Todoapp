@@ -2,6 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Signout from './Signout';
 const Navbars = () => {
   return (
     <div>
@@ -12,6 +13,7 @@ const Navbars = () => {
           <Nav.Link href="#home">DashBoard</Nav.Link>
           </Nav>
         </Container>
+        <Signout/>
       </Navbar>
     </div>
   )

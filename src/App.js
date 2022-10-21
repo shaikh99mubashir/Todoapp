@@ -1,17 +1,11 @@
-import Todo from './Component/Todo';
-import Navbars from './Component/Navbar';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap'
-
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap";
+import "./App.css";
+import "./Config/FirebaseCongig.js";
+import RoutingConfig from "./Component/RoutingConfig";
 
 function App() {
-  return (
-    <div>
-      <Navbars/>
-      <Todo/>
-    </div>
-  );
+  return <RoutingConfig />;
 }
 
 export default App;

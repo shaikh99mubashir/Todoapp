@@ -4,9 +4,11 @@
   margin-top: 40px;
   justify-content: center;
   align-items: center;
+  /* width: 100%; */
 }
 .inputfeild{
   display: flex;
+  /* width: 50%; */
 }
 .input{
   width: 500px;
@@ -77,3 +79,13 @@
   background-image: linear-gradient(rgb(250, 145, 141), rgb(206, 82, 202));
   color: white;
 }
+
+.css-e4w4as-MuiFormLabel-root-MuiInputLabel-root{
+  color: white !important;
+}
+.css-10botns-MuiInputBase-input-MuiFilledInput-input{
+  color: white !important;
+
+}
+
+
