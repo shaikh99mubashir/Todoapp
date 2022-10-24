@@ -16,6 +16,7 @@ import {
   remove,
 } from "firebase/database";
 import { useNavigate, useParams } from "react-router-dom";
+import { Grid, TextField } from "@mui/material";
 
 const Todo = () => {
   const params = useParams()
@@ -39,7 +40,8 @@ const Todo = () => {
   React.useEffect(() => {
     const todoRef = ref(db, `todos/${user.uid}`);
     onValue(todoRef, (e) => {
-      const todo = Object.entries(e.val()).map(([key, value]) => {
+      const val = e.val()
+      const todo = Object.entries(val).map(([key, value]) => {
         return {
           ...value,
           id: key,
@@ -54,12 +56,12 @@ const Todo = () => {
       if (user) {
         const reference = ref(db, `users/${user.uid}`);
         onValue(reference, (e) => {
-          console.log("reference", reference);
+          // console.log("reference", reference);
           const status = e.exists();
           if (status) {
             setUser({ ...e.val(), uid: user.uid });
           }
-          console.log("status", status);
+          // console.log("status", status);
         });
       } else {
         navigate("/");
@@ -128,13 +130,23 @@ const Todo = () => {
   }
   return (
     <>
-      <Navbars />
+ 
+      
+ 
+      
+      
+ <Navbars />
+      
+      <div   className="mainDiv d-flex text-center" style={{justifyContent:'center',width:"100%",flexDirection:"column"}}>
+      <Grid container className="todo text-center d-block" >     
 
-      <div className="mainDiv">
-        <div className="todo text-center">
-          <div className="inputfeild">
-            <input
+      
+
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center"}} >
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={10}  className="inputfeild">
+            <TextField
               type="text"
+              sx={{color:'white !important'}}
               value={input}
               className="input"
               placeholder="Enter Your Task"
@@ -142,11 +154,12 @@ const Todo = () => {
               onKeyDown={handleKeyDown} 
             />
             <Button classes={"b"} buttonValue="+" btnClicked={addTodoTask} />
-          </div>
+          </Grid>
           {updatedInput.map((e, i) => {
             let date = new Date(e.createdAt);
             return (
-              <div className="taskadded" key={i}>
+              <Grid container sx={{display:"flex",justifyContent:"center",marginTop:5}}>
+              <Grid item md={4} sm={6} xs={8} className="taskadded" key={i}>
                 {e.edit ? (
                   <input
                     value={e.value}
@@ -187,7 +200,8 @@ const Todo = () => {
                     btnClicked={() => deleteTodo(e.id, i)}
                   />
                 </div>
-              </div>
+              </Grid>
+              </Grid>
             );
           })}
           <div style={{display:'flex', gap:10, marginTop:10}}>
@@ -196,8 +210,11 @@ const Todo = () => {
           </span>
           <button className="sb px-3" style={{ width: "auto", }} onClick={deleteAll}>Delete All</button>
           </div>
-        </div>
+          </div>
+        
+          </Grid>  
       </div>
+      
     </>
   );
 };

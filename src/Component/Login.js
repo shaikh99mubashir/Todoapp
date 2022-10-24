@@ -29,9 +29,9 @@ const Login = () => {
             const status = e.exists();
             if (status) {
               resolve(e.val());
-              navigate("/todo/:id");
+              navigate("/todo");
             }
-            console.log("status", status);
+            // console.log("status", status);
           });
         })
         .catch((error) => {
@@ -54,9 +54,9 @@ const Login = () => {
     <div>
       <Grid
         container
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom:10 }}
       >
-        <Grid item sx={{ width: "40%" }}>
+        <Grid item md={6} sm={8} xs={10} sx={{ width: "40%"}}>
           <Card
             sx={{
               backgroundColor: "#c9d0d63d",
@@ -133,18 +133,21 @@ const Login = () => {
               <Link
                 to=""
                 underline="none"
-                style={{ color: "white", marginTop: 20 }}
+                style={{ color: "white", marginTop: 20 , fontSize:'1rem' }}
               >
                 Forget Password?
               </Link>
             </Box>
             <br />
             <Box style={{ marginTop: 5, marginBottom: 20 }}>
-              <Link to="signup" underline="none" style={{ color: "white" }}>
+              <Link to="signup" underline="none" style={{ color: "white" , fontSize:'1rem'}}>
                 Create or Register An Account?
               </Link>
             </Box>
           </Card>
+          <Box style={{textAlign:'center', color:'white', fontSize:'1rem', marginTop:100}}>
+           Created By: Shaikh Mubashir
+          </Box>
         </Grid>
       </Grid>
     </div>

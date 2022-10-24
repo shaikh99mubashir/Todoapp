@@ -40,9 +40,9 @@ const Signup = () => {
     <div>
       <Grid
         container
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom:10 }}
       >
-        <Grid item sx={{ width: "40%" }}>
+        <Grid item md={6} sm={8} xs={10} sx={{ width: "40%" }}>
           <Card
             sx={{
               backgroundColor: "#c9d0d63d",
@@ -113,7 +113,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Box>
-
+              <br />
             <Box sx={{ width: "100%", textAlign: "center" }}>
               <Button
                 variant="contained"
@@ -132,7 +132,7 @@ const Signup = () => {
             </Box>
             <br />
             <Box style={{ marginTop: 5, marginBottom: 20 }}>
-              <Link to="/" underline="none" style={{ color: "white" }}>
+              <Link to="/" underline="none" style={{ color: "white", fontSize:'1rem'}}>
                 Already Have an Account?
               </Link>
             </Box>

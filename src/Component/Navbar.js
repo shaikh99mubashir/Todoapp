@@ -5,9 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Signout from './Signout';
 const Navbars = () => {
   return (
-    <div>
-      <Navbar bg="dark" variant="dark">
-        <Container>
+      <Navbar style={{width:"inherit",}} bg="dark" variant="dark" >
+        <Container >
           <Navbar.Brand href="#home">ToDo</Navbar.Brand>
           <Nav className="me-auto">
           <Nav.Link href="#home">DashBoard</Nav.Link>
@@ -15,7 +14,6 @@ const Navbars = () => {
         </Container>
         <Signout/>
       </Navbar>
-    </div>
   )
 }
 
