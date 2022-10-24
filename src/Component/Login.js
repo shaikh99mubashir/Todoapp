@@ -29,7 +29,7 @@ const Login = () => {
             const status = e.exists();
             if (status) {
               resolve(e.val());
-              navigate("/todo");
+              navigate("/todo/:id");
             }
             console.log("status", status);
           });
@@ -37,6 +37,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          alert('error==>', errorCode)
         });
     });
   };
@@ -111,7 +112,7 @@ const Login = () => {
                 sx={{ width: "90%" }}
               />
             </Box>
-
+              <br />
             <Box sx={{ width: "100%", textAlign: "center" }}>
               <Button
                 variant="contained"

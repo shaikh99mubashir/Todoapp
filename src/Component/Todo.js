@@ -15,9 +15,10 @@ import {
   update,
   remove,
 } from "firebase/database";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Todo = () => {
+  const params = useParams()
   const auth = getAuth(app);
   const db = getDatabase(app);
   const navigate = useNavigate();
@@ -28,7 +29,6 @@ const Todo = () => {
 
   function addTodoTask() {
     if (input.length) {
-      // setUpdatedInput([...updatedInput, { value: input }]);
       setInput("");
 
       const reference = ref(db, `todos/${user.uid}`);
@@ -105,24 +105,27 @@ const Todo = () => {
     );
   };
 
-  let b;
-  const deleteTodo = (id) => {
+  const deleteTodo = (id, i) => {
     const todoRef = ref(db, `todos/${user.uid}/${id}`);
     remove(todoRef)
-      .then((deleted) => {
-        console.log("successfully deleted");
-      })
-      .catch((err) => console.log("GOT THE ERROR ON DELETE", err));
-    // const a = [...updatedInput];
-    // b = a.filter(
-    //   (item, ind) => {
-    //     return ind !== i;
-    //   }
-    //   // addCategory(a);
-    // );
-    // a.splice(i, 1);
-    // setUpdatedInput(b);
+    .then((deleted) => {
+      console.log("successfully deleted");
+    })
+    .catch((err) => console.log("GOT THE ERROR ON DELETE", err));
+    setUpdatedInput(updatedInput.filter((item, index)=>{
+      return index!==i;
+     }))
   };
+  const deleteAll =()=>{
+    const todoRef = ref(db, `todos/${user.uid}`);
+      remove(todoRef)
+      setUpdatedInput([]);   
+  }
+  const handleKeyDown = (e) =>{
+    if (e.key === 'Enter') {
+      addTodoTask()
+    }
+  }
   return (
     <>
       <Navbars />
@@ -136,6 +139,7 @@ const Todo = () => {
               className="input"
               placeholder="Enter Your Task"
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown} 
             />
             <Button classes={"b"} buttonValue="+" btnClicked={addTodoTask} />
           </div>
@@ -180,15 +184,18 @@ const Todo = () => {
                   <Button
                     classes={"sb1"}
                     buttonValue="-"
-                    btnClicked={() => deleteTodo(e.id)}
+                    btnClicked={() => deleteTodo(e.id, i)}
                   />
                 </div>
               </div>
             );
           })}
-          <span style={{ color: "white" }}>
+          <div style={{display:'flex', gap:10, marginTop:10}}>
+          <span className="sb px-3" style={{ color: "white" , width: "auto"}}>
             {"item left " + updatedInput.length}
           </span>
+          <button className="sb px-3" style={{ width: "auto", }} onClick={deleteAll}>Delete All</button>
+          </div>
         </div>
       </div>
     </>

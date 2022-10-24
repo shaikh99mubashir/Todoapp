@@ -17,13 +17,16 @@ const Signout = () => {
   };
 
   return (
+    <div className="pe-5">
+
     <button
-      className="b"
+      className="sb"
       style={{ width: "auto", fontSize: 18 }}
       onClick={userSignOut}
     >
       Signout
     </button>
+    </div>
   );
 };
 
